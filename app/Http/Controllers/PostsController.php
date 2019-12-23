@@ -15,7 +15,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::all();
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -45,7 +46,7 @@ class PostsController extends Controller
         ]);
 
         session()->flash('success', 'Create post successfully.');
-        return redirect('posts.index');
+        return redirect(route('posts.index'));
     }
 
     /**
