@@ -8,22 +8,22 @@
         </div>
         <div class="btn-group mt-2 mr-2" role="group" aria-label="First group">
             <a href="{{ route('posts.create')}}" class="btn btn-md btn-info">Add</a>
-            
             <a href="{{route('trashed-posts.index')}}" class="btn btn-md btn-danger">Trask</a>
-            
           </div>
         </div>
         <div class="card-body">
-        @if($posts->count() > 0)
+        
         <div class="table-responsive ps">
             <table class="table tablesorter ">
                 <thead class="text-primary">
                     <tr>
                         <th width="200px">Image</th>
                         <th>Titile</th>
+                        <th>Category</th>
                         <th class="text-center"></th>
                     </tr>
                 </thead>
+                @if($posts->count() > 0)
                 <tbody>
                     @foreach ($posts as $post)
                     <tr>
@@ -31,6 +31,7 @@
                             <img src="{{ asset("storage/".$post->image) }}" width="120px" alt="">
                         </td>
                         <td width="300px">{{ $post->title}}</td>
+                    <td> {{ $post->category->name}}</td>
                         <td class="td-actions text-right">
                             @if(!$post->trashed())
                             <div class="btn-group mr-2" role="group" aria-label="Second group">
@@ -65,11 +66,15 @@
                     </tr>
                     @endforeach
                 </tbody>
+                @else
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center">No data</td>
+                    </tr>
+                </tfoot>
+                @endif
             </table>
-        </div>
-        @else
-            <h3 class="text-center">No Posts</h3>
-        @endif
+        </div>       
     </div>
 </div>
 @endsection

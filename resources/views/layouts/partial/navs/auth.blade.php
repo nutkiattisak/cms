@@ -43,13 +43,16 @@
               <div class="photo">
                 <img src="{{asset('img/anime3.png')}}" alt="Profile Photo">
               </div>
+              <span class="mr-3">{{substr(Auth::user()->name, 0 ,8)}} </span>
               <b class="caret d-none d-lg-block d-xl-block"></b>
               <p class="d-lg-none">
                 Log out
               </p>
             </a>
             <ul class="dropdown-menu dropdown-navbar">
-              <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">{{ Auth::user()->name }}</a></li>
+              <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">
+                Profile
+              </a></li>
               <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
               <li class="dropdown-divider"></li>
               <li class="nav-link">

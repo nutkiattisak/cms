@@ -16,7 +16,7 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css">
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{ asset('css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
@@ -27,25 +27,24 @@
 <body>
     <div class="wrapper">
         <div class="sidebar">
-                @include('layouts.partial.sidebar')
-                
-            
+          @include('layouts.partial.sidebar')
         </div>
         <div class="main-panel">
-                    @include('layouts.partial.navbar')
-
-                    <div class="content">
-
-                    @if(session()->has('success'))
-                    <div class="alert alert-success">
-                        {{session()->get('success')}}
-                    </div>
-                    @endif
-                        @yield('content')
-                    </div>
-
-                    @include('layouts.partial.footer')
-                </div>
+          @include('layouts.partial.navbar')
+            <div class="content">
+              @if(session()->has('success'))
+              <div class="alert alert-info alert-with-icon" data-notify="container">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="tim-icons icon-simple-remove"></i>
+                </button>
+                <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                <span data-notify="message">{{session()->get('success')}}</span>
+              </div>
+              @endif
+              @yield('content')
+            </div>
+            @include('layouts.partial.footer')
+        </div>
     </div>
     <!-- Scripts -->
     {{---

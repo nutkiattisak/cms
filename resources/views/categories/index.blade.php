@@ -11,16 +11,22 @@
         <table class="table">
             <thead>
                 <th>Name</th>
+                <th>Post Count</th>
                 <th>#</th>
             </thead>
             <tbody>
                 @foreach ($categories as $category)
                 <tr>
-                    <td>{{$category->name}}</td>
-                <td>
-                    <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-warning">Edit</a>
-                <a class="btn btn-danger" data-toggle="modal" onclick="handleDelete({{$category->id}})">Del</a>
-                </td>
+                    <td>
+                        {{$category->name}}
+                    </td>
+                    <td>
+                        {{$category->post-count()}}
+                    </td>
+                    <td>
+                        <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-warning">Edit</a>
+                        <a class="btn btn-danger" data-toggle="modal" onclick="handleDelete({{$category->id}})">Del</a>
+                    </td>
                 </tr>
                 
                 @endforeach
